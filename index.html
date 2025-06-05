@@ -45,21 +45,28 @@
             // New state for the Hobbies modal
             const [showHobbiesModal, setShowHobbiesModal] = useState(false);
 
-            // NEW: State to control if all courses are displayed in the Courses Modal
-            const [showAllCourses, setShowAllCourses] = useState(false);
+            // State to manage which course cycle is open in the Courses Modal
+            const [openCycle, setOpenCycle] = useState(null); // null means no cycle is open
 
-
-            // Data for contacts, separating GitHub and LinkedIn for clarity
-            const contactsData = [
-                { name: "Salvador Ramos", github: "https://salvaramen.github.io/", linkedin: null },
-                { name: "Camila", github: "https://camila0807.github.io/ICC/", linkedin: null },
-                { name: "Mharco Paricahua", github: "https://mparicahua.github.io/mharcoParicahua.github.io/", linkedin: "https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259/" },
-                { name: "Anyhely Colca", github: "https://anyh3ly.github.io/AnyhelyColcaMamani.github.io/", linkedin: "https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" },
-                { name: "Dayron Coaquira", github: "https://day-llave.github.io/dayron_giovani_coaquira_llave/", linkedin: "https://www.linkedin.com/in/dayron-giovani-coaquira-llave-725997356/" },
-                { name: "Katherin Velasquez", github: "https://github.com/KatherinVelasquez", linkedin: "https://www.linkedin.com/in/katherin-leydi-velasquez-parque-438158325/" }, // Added placeholder GitHub link
+            // Data for GitHub contacts (only GitHub links)
+            const githubContactsData = [
+                { name: "Salvador Ramos", github: "https://salvaramen.github.io/" },
+                { name: "Camila", github: "https://camila0807.github.io/ICC/" },
+                { name: "Mharco Paricahua", github: "https://mparicahua.github.io/mharcoParicahua.github.io/" },
+                { name: "Anyhely Colca", github: "https://anyh3ly.github.io/AnyhelyColcaMamani.github.io/" },
+                { name: "Dayron Coaquira", github: "https://day-llave.github.io/dayron_giovani_coaquira_llave/" },
+                { name: "Katherin Velasquez", github: "https://github.com/KatherinVelasquez" },
             ];
 
-            // NEW: Structured data for Courses by Cycle
+            // Data for LinkedIn companions (only LinkedIn links) - This is the new independent data source
+            const linkedinCompanionsData = [
+                { name: "Mharco Paricahua", linkedin: "https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259/" },
+                { name: "Anyhely Colca", linkedin: "https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" },
+                { name: "Dayron Coaquira", linkedin: "https://www.linkedin.com/in/dayron-giovani-coaquira-llave-725997356/" },
+                { name: "Katherin Velasquez", linkedin: "https://www.linkedin.com/in/katherin-leydi-velasquez-parque-438158325/" },
+            ];
+
+            // Structured data for Courses by Cycle
             const coursesData = [
                 {
                     cycle: "Ciclo I",
@@ -123,10 +130,6 @@
                 }
             ];
 
-            // Flatten all courses for initial display (first 5) - This variable is no longer used for display, but kept as a reference
-            const allIndividualCourses = coursesData.flatMap(cycle => cycle.courses);
-            // initialCourses is no longer needed as we directly show Ciclo I
-
             // Function to toggle the contacts modal visibility (GitHub)
             const toggleContactsModal = () => {
                 setShowContactsModal(!showContactsModal);
@@ -140,15 +143,15 @@
             // Function to toggle the courses modal visibility
             const toggleCoursesModal = () => {
                 setShowCoursesModal(!showCoursesModal);
-                // Reset showAllCourses state when modal is closed
+                // Reset openCycle state when modal is closed
                 if (showCoursesModal) {
-                    setShowAllCourses(false);
+                    setOpenCycle(null);
                 }
             };
 
-            // NEW: Function to toggle between initial 5 courses and all courses by cycle
-            const toggleCourseDisplay = () => {
-                setShowAllCourses(!showAllCourses);
+            // Function to toggle individual course cycle visibility
+            const toggleCycle = (cycleName) => {
+                setOpenCycle(openCycle === cycleName ? null : cycleName);
             };
 
             // Function to toggle the general data modal visibility
@@ -355,95 +358,70 @@
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contactos (GitHub):</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {contactsData.map((contact, index) => (
-                                        contact.github && (
-                                            <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                                <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                                <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
-                                                <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                                    <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                                </a>
-                                            </div>
-                                        )
+                                    {githubContactsData.map((contact, index) => ( // Using githubContactsData
+                                        <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
+                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
+                                            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                <i className="fab fa-github text-xl mr-2"></i> GitHub Page
+                                            </a>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Compañeros Modal (LinkedIn focus) */}
+                    {/* Compañeros Modal (LinkedIn focus) - Now with its own data source */}
                     {showCompanerosModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleCompanerosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
                                     &times; {/* Multiplication for a close (X) icon */}
                                 </button>
-                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Compañeros (LinkedIn):</h2>
+                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Compañeros (LinkedIn):</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {contactsData.map((contact, index) => (
-                                        contact.linkedin && (
-                                            <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                                <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                                <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
-                                                <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                                    <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                                </a>
-                                            </div>
-                                        )
+                                    {linkedinCompanionsData.map((companion, index) => ( // Using linkedinCompanionsData
+                                        <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
+                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${companion.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            <h3 className="text-lg font-semibold mb-1">{companion.name}</h3>
+                                            <a href={companion.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
+                                            </a>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Courses Modal */}
+                    {/* Courses Modal - Now with collapsible cycles */}
                     {showCoursesModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleCoursesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times;
                                 </button>
-                                {/* Courses Title: bold and red */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-red-500">Cursos:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
-                                    {!showAllCourses ? (
-                                        <React.Fragment>
-                                            {/* Show only Ciclo I initially */}
-                                            {coursesData.length > 0 && ( /* Ensure there's at least one cycle */
-                                                <div className="mb-4 p-3 bg-gray-50 rounded-lg shadow-sm">
-                                                    <h3 className="text-xl font-semibold text-blue-700 mb-2">{coursesData[0].cycle}</h3>
-                                                    <ul className="list-disc list-inside ml-4 space-y-1">
-                                                        {coursesData[0].courses.map((course, courseIndex) => (
-                                                            <li key={courseIndex}>{course}</li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
-                                            {/* Show Más... button only if there are more cycles than just the first one */}
-                                            {coursesData.length > 1 && (
-                                                <button onClick={toggleCourseDisplay} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">
-                                                    Más ciclos...
-                                                </button>
-                                            )}
-                                        </React.Fragment>
-                                    ) : (
-                                        <React.Fragment>
-                                            {/* Show all courses by cycle */}
-                                            {coursesData.map((cycleData, cycleIndex) => (
-                                                <div key={cycleIndex} className="mb-4 p-3 bg-gray-50 rounded-lg shadow-sm">
-                                                    <h3 className="text-xl font-semibold text-blue-700 mb-2">{cycleData.cycle}</h3>
-                                                    <ul className="list-disc list-inside ml-4 space-y-1">
-                                                        {cycleData.courses.map((course, courseIndex) => (
-                                                            <li key={courseIndex}>{course}</li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            ))}
-                                            <button onClick={toggleCourseDisplay} className="mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition duration-300">
-                                                Menos ciclos...
+                                    {coursesData.map((cycleData, index) => (
+                                        <div key={index} className="mb-2 p-3 bg-gray-50 rounded-lg shadow-sm">
+                                            <button
+                                                onClick={() => toggleCycle(cycleData.cycle)}
+                                                className="w-full text-left flex justify-between items-center text-xl font-semibold text-blue-700 hover:text-blue-800 transition duration-300 bg-transparent border-none cursor-pointer p-0"
+                                            >
+                                                {cycleData.cycle}
+                                                <i className={`fas ${openCycle === cycleData.cycle ? 'fa-chevron-up' : 'fa-chevron-down'} text-sm`}></i>
                                             </button>
-                                        </React.Fragment>
-                                    )}
+                                            {openCycle === cycleData.cycle && (
+                                                <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
+                                                    {cycleData.courses.map((course, courseIndex) => (
+                                                        <li key={courseIndex}>{course}</li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
