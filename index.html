@@ -265,7 +265,7 @@
                         </section>
                     </main>
 
-                    {/* Modal de Contactos (Unificado) */}
+                    {/* Modal de Contactos (GitHub focus) */}
                     {showContactsModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
@@ -274,72 +274,47 @@
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Nuestros Contactos:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {/* Contacto 1: Salvador Ramos (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Salvador Ramos" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Salvador Ramos</h3>
-                                        <a href="https://salvaramen.github.io/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                        
-                                    </div>
-                                    {/* Contacto 2: Camila (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Camila" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Camila</h3>
-                                        <a href="https://camila0807.github.io/ICC/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                    </div>
-                                    {/* Contacto 3: Mharco (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Mharco" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Mharco Paricahua</h3>
-                                        <a href="https://mparicahua.github.io/mharcoParicahua.github.io/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259//" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> Linkedin
-                                        </a>
-                                    </div>
-                                    {/* Contacto 4: Anyhely  (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Mharco" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Anyhely Colca</h3>
-                                        <a href="https://anyh3ly.github.io/AnyhelyColcaMamani.github.io/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> Linkedin
-                                        </a>
-                                    </div>
-                                    {/* Contacto 5: Dayron  (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Mharco" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Dayron Coaquira</h3>
-                                        <a href="https://day-llave.github.io/dayron_giovani_coaquira_llave/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/dayron-giovani-coaquira-llave-725997356/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> Linkedin
-                                        </a>
-                                    </div>
-                                     {/* Contacto 6: Katherin (GitHub Page) */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=GitHub" alt="Foto de perfil de Mharco" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Katherin Velasquez </h3>
-                                        <a href="..." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-github text-xl mr-2"></i> GitHub Page
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/katherin-leydi-velasquez-parque-438158325/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> Linkedin
-                                        </a>
-                                    </div>
+                                   {contactsData.map((contact, index) => (
+                                        contact.github && (
+                                            <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
+                                                <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                                <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
+                                                <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                    <i className="fab fa-github text-xl mr-2"></i> GitHub Page
+                                                </a>
+                                            </div>
+                                        )
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     )}
 
+                    {/* Compañeros Modal (LinkedIn focus) */}
+                    {showCompanerosModal && (
+                        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
+                            <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
+                                <button onClick={toggleCompanerosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
+                                    &times; {/* Multiplication for a close (X) icon */}
+                                </button>
+                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Compañeros (LinkedIn):</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                                    {contactsData.map((contact, index) => (
+                                        contact.linkedin && (
+                                            <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
+                                                <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                                <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
+                                                <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                    <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
+                                                </a>
+                                            </div>
+                                        )
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
                     {/* Modal de Cursos */}
                     {showCoursesModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
