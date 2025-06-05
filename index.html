@@ -28,6 +28,8 @@
         const App = () => {
             // State to control the visibility of the unified contacts modal
             const [showContactsModal, setShowContactsModal] = useState(false);
+            // State to control the visibility of the companions modal (LinkedIn focus)
+            const [showCompanerosModal, setShowCompanerosModal] = useState(false);
             // State to control the visibility of the courses modal
             const [showCoursesModal, setShowCoursesModal] = useState(false);
             // State to control the visibility of the general data modal
@@ -42,10 +44,25 @@
             const [showProfesoresModal, setShowProfesoresModal] = useState(false);
             // Nuevo estado para el modal de Hobbies
             const [showHobbiesModal, setShowHobbiesModal] = useState(false);
-
-            // Function to toggle the unified contacts modal visibility
+                       
+            // Data for contacts, separating GitHub and LinkedIn for clarity
+            const contactsData = [
+                { name: "Salvador Ramos", github: "https://salvaramen.github.io/", linkedin: null },
+                { name: "Camila", github: "https://camila0807.github.io/ICC/", linkedin: null },
+                { name: "Mharco Paricahua", github: "https://mparicahua.github.io/mharcoParicahua.github.io/", linkedin: "https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259/" },
+                { name: "Anyhely Colca", github: "https://anyh3ly.github.io/AnyhelyColcaMamani.github.io/", linkedin: "https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" },
+                { name: "Dayron Coaquira", github: "https://day-llave.github.io/dayron_giovani_coaquira_llave/", linkedin: "https://www.linkedin.com/in/dayron-giovani-coaquira-llave-725997356/" },
+                { name: "Katherin Velasquez", github: "https://github.com/KatherinVelasquez", linkedin: "https://www.linkedin.com/in/katherin-leydi-velasquez-parque-438158325/" }, // Added placeholder GitHub link
+            ];
+            
+            // Function to toggle the unified contacts modal visibility (GitHub)
             const toggleContactsModal = () => {
                 setShowContactsModal(!showContactsModal);
+            };
+            
+             // Function to toggle the companions modal visibility (LinkedIn)
+            const toggleCompanerosModal = () => {
+                setShowCompanerosModal(!showCompanerosModal);
             };
 
             // Function to toggle the courses modal visibility
