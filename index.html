@@ -7,48 +7,49 @@
     <meta name="author" content="Jesús Franklin Hilarión Gallegos">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="oG0oUoYtchcWkowC-ieFpGoy79UUIh_ZecOlSOex6cE" />
-    <!-- Include Tailwind CSS -->
+    <!-- Incluir Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Font Awesome -->
+    <!-- Incluir Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Include React and ReactDOM -->
+    <!-- Incluir React y ReactDOM -->
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <!-- Include Babel -->
+    <!-- Incluir Babel para JSX en el navegador -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
     <div id="root"></div>
 
-    <!-- React application script -->
+    <!-- Script de la aplicación React -->
     <script type="text/babel">
+        // Desestructuración de useState y useEffect de React
         const { useState, useEffect } = React;
 
-        // Main App component
+        // Componente principal de la aplicación
         const App = () => {
-            // State to control the visibility of the contacts modal (GitHub focus)
+            // Estado para controlar la visibilidad del modal de contactos (enfoque en GitHub)
             const [showContactsModal, setShowContactsModal] = useState(false);
-            // State to control the visibility of the companions modal (LinkedIn focus)
+            // Estado para controlar la visibilidad del modal de compañeros (enfoque en LinkedIn)
             const [showCompanerosModal, setShowCompanerosModal] = useState(false);
-            // State to control the visibility of the courses modal
+            // Estado para controlar la visibilidad del modal de cursos
             const [showCoursesModal, setShowCoursesModal] = useState(false);
-            // State to control the visibility of the general data modal
+            // Estado para controlar la visibilidad del modal de datos generales
             const [showDatosModal, setShowDatosModal] = useState(false);
-            // Individual states for Certificados, Voluntariados and Profesores modals
+            // Estados individuales para los modales de Certificados, Voluntariados y Profesores
             const [showCertificadosModal, setShowCertificadosModal] = useState(false);
-            // State to control the visibility of the volunteering modal
+            // Estado para controlar la visibilidad del modal de voluntariado
             const [showVoluntariadosModal, setShowVoluntariadosModal] = useState(false);
-            // State for the professional profile modal
+            // Estado para el modal de perfil profesional
             const [showPerfilModal, setShowPerfilModal] = useState(false);
-            // State for the Profesores modal (maintained to control visibility)
+            // Estado para el modal de Profesores (mantenido para controlar la visibilidad)
             const [showProfesoresModal, setShowProfesoresModal] = useState(false);
-            // New state for the Hobbies modal
+            // Nuevo estado para el modal de Hobbies
             const [showHobbiesModal, setShowHobbiesModal] = useState(false);
 
-            // State to manage which course cycle is open in the Courses Modal
-            const [openCycle, setOpenCycle] = useState(null); // null means no cycle is open
+            // Estado para gestionar qué ciclo de curso está abierto en el Modal de Cursos
+            const [openCycle, setOpenCycle] = useState(null); // null significa que ningún ciclo está abierto
 
-            // Data for GitHub contacts (only GitHub links)
+            // Datos para contactos de GitHub (solo enlaces de GitHub)
             const githubContactsData = [
                 { name: "Salvador Ramos Mendoza", github: "https://salvaramen.github.io/" },
                 { name: "Camila Carrasco Coaquera", github: "https://camila0807.github.io/ICC/" },
@@ -58,7 +59,8 @@
                 { name: "Katherin Velasquez Parque", github: "https://github.com/KatherinVelasquez" },
             ];
 
-            // Data for LinkedIn companions (only LinkedIn links) - This is the new independent data source
+            // Datos para compañeros de LinkedIn (solo enlaces de LinkedIn)
+            // Se extendió la lista de compañeros con datos vacíos para alcanzar 10 páginas.
             const linkedinCompanionsData = [
                 { name: "Mharco Paricahua Akutak", linkedin: "https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259/" },
                 { name: "Anyhely Colca Mamani", linkedin: "https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" },
@@ -70,9 +72,11 @@
                 { name: "Salvador Ramos Mendoza", linkedin: "https://www.linkedin.com/in/salvador-jes%C3%BAs-ramos-mendoza-a09626326/" },
                 { name: "Camila Chávez Paredes", linkedin: "https://www.linkedin.com/in/camila-ch%C3%A1vez-paredes-441577234//" },
                 { name: "Duany Gonzales Hilares", linkedin: "https://www.linkedin.com/in/duany-alexia-gonzales-hilares-096156368/overlay/contact-info/" },
+                // Añadir elementos vacíos para asegurar al menos 10 páginas con 5 elementos por página (50 elementos en total)
+                ...Array(40).fill().map((_, i) => ({ name: `Compañero Vacío ${i + 11}`, linkedin: "" }))
             ];
 
-            // Structured data for Courses by Cycle
+            // Datos estructurados para Cursos por Ciclo
             const coursesData = [
                 {
                     cycle: "Ciclo I",
@@ -104,7 +108,6 @@
                         "Antropología Filosófica y Teológica",
                         "Lógica y Argumentación",
                         "Apreciación Artística",
-                        "Apreciación Literaria",
                         "Cálculo en una Variable",
                         "Análisis de Datos I",
                         "Análisis Financiero",
@@ -131,41 +134,148 @@
                         "Persona, Matrimonio y Familia",
                         "Análisis, Diseño y Gestión de Procesos",
                         "Desarrollo de Habilidades de Negociación",
-                        "Startups I"
+                        "Startups I",
+                        "Microeconmía"
                     ]
+                },
+                {
+                    cycle: "Ciclo VI",
+                    courses: [
+                        "Liderazgo",
+                        "Teología II",
+                        "Estadística para Administradores",
+                        "Comportamiento Organizacional",
+                        "Macroeconomía",
+                        "Historia de la Cultura Occidental II"
+                    ]
+                },
+                {
+                    cycle: "Ciclo VII",
+                    courses: [] // Cursos vacíos para completar
+                },
+                {
+                    cycle: "Ciclo VIII",
+                    courses: [] // Cursos vacíos para completar
+                },
+                {
+                    cycle: "Ciclo IX",
+                    courses: [] // Cursos vacíos para completar
+                },
+                {
+                    cycle: "Ciclo X",
+                    courses: [] // Cursos vacíos para completar
                 }
             ];
 
-            // Function to toggle the contacts modal visibility (GitHub)
+            // Datos para Profesores
+            const profesoresData = [
+                { name: "Ernesto Cuadros Vargas", linkedin: "https://www.linkedin.com/in/ecuadrosv?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B68hvky8YSgyX4wjCxkmfQg%3D%3D" },
+                { name: "Alonso Quintanilla", linkedin: "https://www.linkedin.com/in/alonso-quintanilla-30b52115/" },
+                { name: "Ana Elizabeth Gómez Burns", linkedin: "https://www.linkedin.com/in/ana-elizabeth-g%C3%B3mez-burns-4502263b/overlay/contact-info/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BIHXlp3f7RNWG7dMX8SHQFQ%3D%3D" },
+                { name: "Lieslie Gallegos Arias", linkedin: "https://www.linkedin.com/in/lieslie-gallegos-arias-investigador-renacyt-773713a5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBIbHZOUOR%2BmtMFkP0PPZlg%3D%3D" },
+                { name: "Arturo Salazar Monroy", linkedin: "https://www.linkedin.com/in/arturo-salazar-monroy-a032bb32b/" },
+                { name: "María Bocchio Linares", linkedin: "https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-bocchio-linares-96846035/" },
+                { name: "Karen Gutiérrez Martínez", linkedin: "https://www.linkedin.com/in/karenguti%C3%A9rrezmart%C3%ADnez/" },
+                { name: "Maria Ojeda Verjel", linkedin: "https://www.linkedin.com/in/maria-del-rosario-ojeda-verjel/" },
+                // Añadir 17 elementos vacíos para asegurar 5 páginas con 5 elementos por página (8 reales + 17 vacíos = 25 total)
+                ...Array(17).fill().map((_, i) => ({ name: `Profesor Vacío ${i + 9}`, linkedin: "" }))
+            ];
+
+            // --- Nuevos estados para la paginación de compañeros ---
+            const [currentPageCompaneros, setCurrentPageCompaneros] = useState(1);
+            const itemsPerPageCompaneros = 5; // Mostrar 5 compañeros por página
+
+            // Calcular el índice del último y primer compañero en la página actual
+            const indexOfLastCompanion = currentPageCompaneros * itemsPerPageCompaneros;
+            const indexOfFirstCompanion = indexOfLastCompanion - itemsPerPageCompaneros;
+            const currentCompanions = linkedinCompanionsData.slice(indexOfFirstCompanion, indexOfLastCompanion);
+
+            // Calcular el número total de páginas
+            const totalPagesCompaneros = Math.ceil(linkedinCompanionsData.length / itemsPerPageCompaneros);
+
+            // Función para cambiar de página (Compañeros)
+            const paginateCompaneros = (pageNumber) => setCurrentPageCompaneros(pageNumber);
+
+            // Función para ir a la página anterior (Compañeros)
+            const goToPrevPageCompaneros = () => {
+                if (currentPageCompaneros > 1) {
+                    setCurrentPageCompaneros(currentPageCompaneros - 1);
+                }
+            };
+
+            // Función para ir a la página siguiente (Compañeros)
+            const goToNextPageCompaneros = () => {
+                if (currentPageCompaneros < totalPagesCompaneros) {
+                    setCurrentPageCompaneros(currentPageCompaneros + 1);
+                }
+            };
+            // --- Fin de estados y funciones de paginación de compañeros ---
+
+            // --- Nuevos estados para la paginación de profesores ---
+            const [currentPageProfesores, setCurrentPageProfesores] = useState(1);
+            const itemsPerPageProfesores = 5; // Mostrar 5 profesores por página
+
+            // Calcular el índice del último y primer profesor en la página actual
+            const indexOfLastProfesor = currentPageProfesores * itemsPerPageProfesores;
+            const indexOfFirstProfesor = indexOfLastProfesor - itemsPerPageProfesores;
+            const currentProfesores = profesoresData.slice(indexOfFirstProfesor, indexOfLastProfesor);
+
+            // Calcular el número total de páginas de profesores
+            const totalPagesProfesores = Math.ceil(profesoresData.length / itemsPerPageProfesores);
+
+            // Función para cambiar de página (Profesores)
+            const paginateProfesores = (pageNumber) => setCurrentPageProfesores(pageNumber);
+
+            // Función para ir a la página anterior (Profesores)
+            const goToPrevPageProfesores = () => {
+                if (currentPageProfesores > 1) {
+                    setCurrentPageProfesores(currentPageProfesores - 1);
+                }
+            };
+
+            // Función para ir a la página siguiente (Profesores)
+            const goToNextPageProfesores = () => {
+                if (currentPageProfesores < totalPagesProfesores) {
+                    setCurrentPageProfesores(currentPageProfesores + 1);
+                }
+            };
+            // --- Fin de estados y funciones de paginación de profesores ---
+
+
+            // Función para alternar la visibilidad del modal de contactos (GitHub)
             const toggleContactsModal = () => {
                 setShowContactsModal(!showContactsModal);
             };
 
-            // Function to toggle the companions modal visibility (LinkedIn)
+            // Función para alternar la visibilidad del modal de compañeros (LinkedIn)
             const toggleCompanerosModal = () => {
                 setShowCompanerosModal(!showCompanerosModal);
+                // Resetear la página a 1 cuando el modal se cierra
+                if (showCompanerosModal) {
+                    setCurrentPageCompaneros(1);
+                }
             };
 
-            // Function to toggle the courses modal visibility
+            // Función para alternar la visibilidad del modal de cursos
             const toggleCoursesModal = () => {
                 setShowCoursesModal(!showCoursesModal);
-                // Reset openCycle state when modal is closed
+                // Reiniciar el estado openCycle cuando el modal se cierra
                 if (showCoursesModal) {
                     setOpenCycle(null);
                 }
             };
 
-            // Function to toggle individual course cycle visibility
+            // Función para alternar la visibilidad de un ciclo de curso individual
             const toggleCycle = (cycleName) => {
-                setOpenCycle(openCycle === cycleName ? null : cycleName);
+                setOpenCycle(openCycle === cycleData.cycle ? null : cycleData.cycle);
             };
 
-            // Function to toggle the general data modal visibility
+            // Función para alternar la visibilidad del modal de datos generales
             const toggleDatosModal = () => {
                 setShowDatosModal(!showDatosModal);
             };
 
-            // Individual functions for Certificados and Voluntariados modals
+            // Funciones individuales para los modales de Certificados y Voluntariados
             const toggleCertificadosModal = () => {
                 setShowCertificadosModal(!showCertificadosModal);
             };
@@ -174,73 +284,81 @@
                 setShowVoluntariadosModal(!showVoluntariadosModal);
             };
 
-            // Function for the Profesores modal
+            // Función para el modal de Profesores
             const toggleProfesoresModal = () => {
                 setShowProfesoresModal(!showProfesoresModal);
+                // Resetear la página a 1 cuando el modal se cierra
+                if (showProfesoresModal) {
+                    setCurrentPageProfesores(1);
+                }
             };
 
-            // Function for the professional profile modal
+            // Función para el modal de perfil profesional
             const togglePerfilModal = () => {
                 setShowPerfilModal(!showPerfilModal);
             };
 
-            // New function for the Hobbies modal
+            // Nueva función para el modal de Hobbies
             const toggleHobbiesModal = () => {
                 setShowHobbiesModal(!showHobbiesModal);
             };
 
             return (
                 <div className="text-gray-800">
-                    {/* Header - Full blue background and white text */}
+                    {/* Encabezado - Fondo azul completo y texto blanco */}
                     <header className="bg-blue-600 text-white shadow-md py-4 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-center rounded-b-xl">
                         <div className="flex items-center mb-4 md:mb-0">
-                            {/* Catholic University San Pablo logo with link */}
+                            {/* Logo de la Universidad Católica San Pablo con enlace */}
                             <a href="https://ucsp.edu.pe/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                                 <img src="https://virtual.ucsp.edu.pe/pluginfile.php/1/theme_academi/logo/1746507233/ucsplogo01.png" alt="Logo Universidad Católica San Pablo" className="w-auto h-16 mr-3" />
                             </a>
                         </div>
-                        {/* Navigation - White text and light blue hover */}
+                        {/* Navegación - Texto blanco y hover azul claro */}
                         <nav className="flex flex-wrap justify-center md:justify-end space-x-4 md:space-x-8 text-base font-medium">
-                            {/* Link for Carrera */}
+                            {/* Enlace para Carrera */}
                             <a href="https://ucsp.edu.pe/departamentos/ciencias-economicas-y-empresariales/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Carrera</a>
-                            {/* Link for Malla Curricular */}
+                            {/* Enlace para Malla Curricular */}
                             <a href="https://drive.google.com/file/d/1oYkWR-fjFn3w3-VvuOFlROawW9BR_Xng/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Malla Curricular</a>
-                            {/* Button to open Perfil modal */}
+                            {/* Botón para abrir el modal de Perfil */}
                             <button onClick={togglePerfilModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Perfil
                             </button>
-                            {/* Button to open Datos modal */}
+                            {/* Botón para abrir el modal de Datos */}
                             <button onClick={toggleDatosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Datos
                             </button>
-                            {/* Button to open Contacts modal (GitHub focus) */}
+                            {/* Botón para abrir el modal de Contactos (enfoque en GitHub) */}
                             <button onClick={toggleContactsModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Contactos
                             </button>
                         </nav>
                     </header>
 
-                    {/* Main Section (Hero Section) */}
+                    {/* Sección Principal (Sección Hero) */}
                     <main className="container mx-auto px-4 py-12 md:py-20">
                         <section className="text-center mb-16">
                             <p className="text-xl md:text-2xl text-gray-600 mb-4">Hola mundo, soy:</p>
-                            {/* Name: Slightly increased font size and ensured it stays on one line */}
-                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 inline-block whitespace-nowrap overflow-x-auto">Jesús Franklin Hilarión Gallegos</h1>
-                            <p className="text-lg md:text-xl text-blue-600 font-semibold mb-6">Administración de Negocios | UCSP</p>
-                            <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-700 leading-relaxed mb-8">
-                                "Comprometido con la gestión responsable, el impacto social y la innovación para un futuro sostenible."
+                            {/* Nombre: Flechas borradas, segunda 'g' completa y nowrap para evitar saltos de línea innecesarios */}
+                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 inline-block whitespace-nowrap">Jesús Franklin Hilarión Gallegos</h1>
+                            {/* Frase dividida en dos partes iguales */}
+                            <p className="text-lg md:text-xl text-blue-600 font-semibold mb-2">Administración de Negocios | UCSP</p>
+                            <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-700 leading-relaxed mb-1">
+                                "Comprometido con la gestión responsable, el impacto social"
+                            </p>
+                            <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                                "y la innovación para un futuro sostenible."
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                                {/* Download CV button - Now a link to Canva */}
+                                {/* Botón para Descargar CV - Ahora un enlace a Canva */}
                                 <a href="https://www.canva.com/design/DAGgz73c9w4/ohHyXqa3QkDKSEeudh6KSA/view?utm_content=DAGgz73c9w4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc4cc08c568" target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
                                     Descargar CV
                                 </a>
-                                {/* Trayectoria button - Updated link to Canva */}
+                                {/* Botón Trayectoria - Enlace actualizado a Canva */}
                                 <a href="https://www.canva.com/design/DAGoX1zdWJY/5pLBWRqiVhVqGVrsGXqR4Q/view?utm_content=DAGoX1zdWJY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h06df5d608d" target="_blank" rel="noopener noreferrer" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
                                     Trayectoria
                                 </a>
                             </div>
-                            {/* Social media icons restored here with provided links */}
+                            {/* Iconos de redes sociales restaurados aquí con los enlaces proporcionados */}
                             <div className="mt-16 flex flex-wrap justify-center space-x-6 md:space-x-10 text-3xl">
                                 <a href="https://wa.me/51974443487" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-600 transition duration-300 ease-in-out" aria-label="Whatsapp"><i className="fab fa-whatsapp"></i></a>
                                 <a href="https://web.facebook.com/?locale=es_LA&_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-600 transition duration-300 ease-in-out" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
@@ -251,13 +369,13 @@
                             </div>
                         </section>
 
-                        {/* "About me" Section */}
+                        {/* Sección "Sobre mí" */}
                         <section className="mb-16 bg-white p-8 rounded-xl shadow-lg">
                             <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Algo sobre mí:</h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                                {/* Habilidades (Skills) */}
+                                {/* Habilidades */}
                                 <div className="p-6 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                    <img src="https://i.imgur.com/AgOFJBn.png" alt="Icono Habilidades" className="mb-4 w-32 h-32 object-contain" />
+                                    <img src="https://i.imgur.com/Tmfj39u.gif" alt="Icono Habilidades con movimiento" className="mb-4 w-32 h-32 object-contain" />
                                     <h3 className="text-xl font-semibold mb-2">Habilidades</h3>
                                     <ul className="text-gray-700 space-y-1">
                                         <li>Liderazgo</li>
@@ -265,9 +383,10 @@
                                         <li>Herramientas tecnológicas</li>
                                     </ul>
                                 </div>
-                                {/* Fortalezas (Strengths) */}
+                                {/* Fortalezas */}
                                 <div className="p-6 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                    <img src="https://i.imgur.com/S9FTFV3.png" alt="Icono Fortalezas" className="mb-4 w-32 h-32 object-contain" />
+                                    {/* Se actualizó la imagen con el GIF proporcionado */}
+                                    <img src="https://i.imgur.com/YXKTRkO.gif" alt="Icono Fortalezas con movimiento" className="mb-4 w-32 h-32 object-contain" />
                                     <h3 className="text-xl font-semibold mb-2">Fortalezas</h3>
                                     <ul className="text-gray-700 space-y-1">
                                         <li>Adaptabilidad</li>
@@ -275,9 +394,9 @@
                                         <li>Resolución de problemas</li>
                                     </ul>
                                 </div>
-                                {/* Valores (Values) */}
+                                {/* Valores */}
                                 <div className="p-6 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                    <img src="https://i.imgur.com/yjYFPXA.png" alt="Icono Valores" className="mb-4 w-32 h-32 object-contain" />
+                                    <img src="https://i.imgur.com/d6QgNnC.gif" alt="Icono Valores con movimiento" className="mb-4 w-32 h-32 object-contain" />
                                     <h3 className="text-xl font-semibold mb-2">Valores</h3>
                                     <ul className="text-gray-700 space-y-1">
                                         <li>Solidaridad</li>
@@ -288,41 +407,41 @@
                             </div>
                         </section>
 
-                        {/* New Activities Section */}
+                        {/* Nueva Sección de Actividades */}
                         <section className="mb-16 bg-white p-8 rounded-xl shadow-lg">
                             <h2 className="text-2xl font-bold text-center mb-10 section-title mx-auto">Actividades:</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                {/* Activity 1: Ladrillera Diamante - Arequipa */}
+                                {/* Actividad 1: Ladrillera Diamante - Arequipa */}
                                 <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/jGglNLy.jpeg" alt="Ladrillera Diamante - Arequipa" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Ladrillera Diamante - Arequipa</h3>
                                     <p className="text-gray-700 text-xs">Participación en actividades de gestión y soporte en Ladrillera Diamante, contribuyendo a la eficiencia operativa.</p>
                                 </div>
-                                {/* Activity 2: Voluntario San Pablo - Arequipa */}
+                                {/* Actividad 2: Voluntario San Pablo - Arequipa */}
                                 <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/j3E56Ny.jpeg" alt="Voluntario San Pablo - Arequipa" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Voluntario San Pablo - Arequipa</h3>
                                     <p className="text-gray-700 text-xs">Voluntariado en la Universidad Católica San Pablo, apoyando diversas iniciativas comunitarias y académicas.</p>
                                 </div>
-                                {/* Activity 3: Voluntariado Fundación Romero - Ubinas, Arequipa */}
+                                {/* Actividad 3: Voluntariado Fundación Romero - Ubinas, Arequipa */}
                                 <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/ddWlCWG.jpeg" alt="Voluntariado Fundación Romero - Ubinas, Arequipa" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Voluntariado Fund. Romero - Moquegua</h3>
                                     <p className="text-gray-700 text-xs">Colaboración en proyectos de la Fundación Romero en el distrito de Ubinas, Moquegua, enfocados en desarrollo social y apoyo a comunidades.</p>
                                 </div>
-                                {/* New Activity 4: Volunteer Military Service */}
+                                {/* Nueva Actividad 4: Servicio Militar Voluntario */}
                                 <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/nEWRvNk.jpeg" alt="Servicio Militar Voluntario - Ejército del Perú" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Servicio Militar Voluntario - Tacna</h3>
                                     <p className="text-gray-700 text-xs">Realicé el Servicio Militar Voluntario en el Ejército del Perú, sirviendo a tiempo completo en Tacna (Locumba) y en Arequipa (Salaverry) durante la pandemia de COVID-19.</p>
                                 </div>
-                                {/* New Activity 5: Friends Meetings */}
+                                {/* Nueva Actividad 5: Reuniones de Amistades */}
                                 <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/uB7oBLN.jpeg" alt="Reuniones de Amistades" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Reuniones de Administradores - UCSP</h3>
                                     <p className="text-gray-700 text-xs">Nos reunimos para compartir un almuerzo, disfrutar de juegos y fortalecer nuestros lazos. Más que compañeros, somos una familia, y juntos demostramos que el trabajo en equipo potencia nuestras habilidades y nos ayuda a crecer.</p>
                                 </div>
-                                {/* New Activity 6: Technical Visit - AURICA Group */}
+                                {/* Nueva Actividad 6: Visita Técnica - Grupo AURICA */}
                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                     <img src="https://i.imgur.com/nPn86gB.jpeg" alt="Visita Técnica - Grupo AURICA (ASIMET)" className="mb-4 w-full h-56 object-cover rounded-lg" />
                                     <h3 className="text-lg font-semibold mb-2">Visita Técnica - Grupo AURICA (ASIMET)</h3>
@@ -332,7 +451,7 @@
                             </div>
                         </section>
 
-                        {/* General Contact Section */}
+                        {/* Sección de Contacto General */}
                         <section className="mb-16 bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
                             <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contacto:</h2>
                             <p className="text-center text-gray-700 mb-6">Estoy disponible para cualquier consulta o colaboración:</p>
@@ -356,21 +475,21 @@
                         </section>
                     </main>
 
-                    {/* Contacts Modal (GitHub focus) */}
+                    {/* Modal de Contactos (enfoque en GitHub) */}
                     {showContactsModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleContactsModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contactos:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {githubContactsData.map((contact, index) => ( // Using githubContactsData
+                                    {githubContactsData.map((contact, index) => ( // Usando githubContactsData
                                         <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                             <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
                                             <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
                                             <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                                <i className="fab fa-github text-xl mr-2"></i> GitHub Page
+                                                <i className="fab fa-github text-xl mr-2"></i> Página de GitHub
                                             </a>
                                         </div>
                                     ))}
@@ -379,37 +498,76 @@
                         </div>
                     )}
 
-                    {/* Compañeros Modal (LinkedIn focus) - Now with its own data source */}
+                    {/* Modal de Compañeros (enfoque en LinkedIn) - Ahora con su propia fuente de datos y paginación */}
                     {showCompanerosModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleCompanerosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Compañeros:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {linkedinCompanionsData.map((companion, index) => ( // Using linkedinCompanionsData
+                                    {currentCompanions.map((companion, index) => ( // Usando currentCompanions para la paginación
                                         <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
                                             <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${companion.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
                                             <h3 className="text-lg font-semibold mb-1">{companion.name}</h3>
-                                            <a href={companion.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                                <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                            </a>
+                                            {/* Si la URL de LinkedIn está vacía, no mostrar el enlace */}
+                                            {companion.linkedin && (
+                                                <a href={companion.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                    <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
+                                                </a>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
+                                {/* Controles de paginación */}
+                                {totalPagesCompaneros > 1 && (
+                                    <div className="flex justify-center items-center space-x-4 mt-8">
+                                        <button
+                                            onClick={goToPrevPageCompaneros}
+                                            disabled={currentPageCompaneros === 1}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageCompaneros === 1 ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Anterior
+                                        </button>
+                                        {/* Botones de números de página */}
+                                        {[...Array(totalPagesCompaneros)].map((_, index) => (
+                                            <button
+                                                key={index + 1}
+                                                onClick={() => paginateCompaneros(index + 1)}
+                                                className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                    currentPageCompaneros === index + 1 ? 'bg-blue-800 text-white shadow-lg' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                                                }`}
+                                            >
+                                                {index + 1}
+                                            </button>
+                                        ))}
+                                        <button
+                                            onClick={goToNextPageCompaneros}
+                                            disabled={currentPageCompaneros === totalPagesCompaneros}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageCompaneros === totalPagesCompaneros ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Siguiente
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}
 
-                    {/* Courses Modal - Now with collapsible cycles */}
+                    {/* Modal de Cursos - Ahora con ciclos plegables */}
                     {showCoursesModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleCoursesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
                                     &times;
                                 </button>
-                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-red-500">Cursos:</h2>
+                                {/* Se cambió el color del título de Cursos de rojo a azul */}
+                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Cursos:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
                                     {coursesData.map((cycleData, index) => (
                                         <div key={index} className="mb-2 p-3 bg-gray-50 rounded-lg shadow-sm">
@@ -434,18 +592,18 @@
                         </div>
                     )}
 
-                    {/* General Data Modal */}
+                    {/* Modal de Datos Generales */}
                     {showDatosModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleDatosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
-                                {/* General Data Title: bold and blue */}
+                                {/* Título de Datos Generales: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Datos Generales:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
                                     <p><strong>Nombre completo:</strong> Jesús Franklin Hilarión Gallegos</p>
-                                    {/* Date of Birth modified to not show the year */}
+                                    {/* Fecha de Nacimiento modificada para no mostrar el año */}
                                     <p><strong>Fecha de Nacimiento:</strong> 18/05/...</p>
                                     <p><strong>Residencia:</strong> Alto Selva Alegre - Arequipa, Perú</p>
                                     <p><strong>Centro de Estudios:</strong> Universidad Católica San Pablo</p>
@@ -458,14 +616,14 @@
                         </div>
                     )}
 
-                    {/* Certificates Modal */}
+                    {/* Modal de Certificados */}
                     {showCertificadosModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleCertificadosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
-                                {/* Title for Certificados: bold and blue */}
+                                {/* Título para Certificados: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Certificados:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
                                     <p>
@@ -479,14 +637,14 @@
                         </div>
                     )}
 
-                    {/* Volunteering Modal */}
+                    {/* Modal de Voluntariado */}
                     {showVoluntariadosModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleVoluntariadosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
-                                {/* Title for Voluntariados: bold and blue */}
+                                {/* Título para Voluntariados: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Voluntariados:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
                                     <p>
@@ -500,94 +658,77 @@
                         </div>
                     )}
 
-                    {/* Professors Modal */}
+                    {/* Modal de Profesores */}
                     {showProfesoresModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleProfesoresModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Profesores:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {/* Professor 1: Ernesto Cuadros Vargas */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Ernesto Cuadros Vargas" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Ernesto Cuadros Vargas</h3>
-                                        <a href="https://www.linkedin.com/in/ecuadrosv?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B68hvky8YSgyX4wjCxkmfQg%3D%3D" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                     {/* Professor 2: Alonso Quintanilla */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Alonso Quintanilla" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Alonso Quintanilla</h3>
-                                        <a href="https://www.linkedin.com/in/alonso-quintanilla-30b52115/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                    {/* Professor 3: Ana Elizabeth Gómez Burns */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Ana Elizabeth Gómez Burns" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Ana Elizabeth Gómez Burns</h3>
-                                        <a href="https://www.linkedin.com/in/ana-elizabeth-g%C3%B3mez-burns-4502263b/overlay/contact-info/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BIHXlp3f7RNWG7dMX8SHQFQ%3D%3D" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                    {/* Professor 4: Lieslie Gallegos Arias */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Lieslie Gallegos Arias" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Lieslie Gallegos Arias</h3>
-                                        <a href="https://www.linkedin.com/in/lieslie-gallegos-arias-investigador-renacyt-773713a5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBIbHZOUOR%2BmtMFkP0PPZlg%3D%3D" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                      {/* Professor 5: Arturo Salazar Monroy */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Arturo Salazar Monroy" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Arturo Salazar Monroy</h3>
-                                        <a href="https://www.linkedin.com/in/arturo-salazar-monroy-a032bb32b/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                    {/* Professor 6: María Bocchio Linares */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de María Bocchio Linares" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">María Bocchio Linares</h3>
-                                        <a href="https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-bocchio-linares-96846035/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                     {/* Professor 7: Karen Gutiérrez Martínez */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Karen Gutiérrez Martínez" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Karen Gutiérrez Martínez</h3>
-                                        <a href="https://www.linkedin.com/in/karenguti%C3%A9rrezmart%C3%ADnez/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
-                                     {/* Professor 8: Maria Ojeda Verjel */}
-                                    <div className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                        <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt="Foto de perfil de Maria Ojeda Verjel" className="w-20 h-20 rounded-full mb-3 object-cover" />
-                                        <h3 className="text-lg font-semibold mb-1">Maria Ojeda Verjel</h3>
-                                        <a href="https://www.linkedin.com/in/maria-del-rosario-ojeda-verjel/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                            <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
-                                        </a>
-                                    </div>
+                                    {currentProfesores.map((profesor, index) => ( // Usando currentProfesores para la paginación
+                                        <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
+                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${profesor.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            <h3 className="text-lg font-semibold mb-1">{profesor.name}</h3>
+                                            {/* Si la URL de LinkedIn está vacía, no mostrar el enlace */}
+                                            {profesor.linkedin && (
+                                                <a href={profesor.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                    <i className="fab fa-linkedin text-xl mr-2"></i> LinkedIn
+                                                </a>
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
+                                {/* Controles de paginación de profesores */}
+                                {totalPagesProfesores > 1 && (
+                                    <div className="flex justify-center items-center space-x-4 mt-8">
+                                        <button
+                                            onClick={goToPrevPageProfesores}
+                                            disabled={currentPageProfesores === 1}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageProfesores === 1 ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Anterior
+                                        </button>
+                                        {/* Botones de números de página para profesores */}
+                                        {[...Array(totalPagesProfesores)].map((_, index) => (
+                                            <button
+                                                key={index + 1}
+                                                onClick={() => paginateProfesores(index + 1)}
+                                                className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                    currentPageProfesores === index + 1 ? 'bg-blue-800 text-white shadow-lg' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                                                }`}
+                                            >
+                                                {index + 1}
+                                            </button>
+                                        ))}
+                                        <button
+                                            onClick={goToNextPageProfesores}
+                                            disabled={currentPageProfesores === totalPagesProfesores}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageProfesores === totalPagesProfesores ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Siguiente
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}
 
-                    {/* Professional Profile Modal */}
+                    {/* Modal de Perfil Profesional */}
                     {showPerfilModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-5xl w-full relative my-8">
                                 <button onClick={togglePerfilModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Perfil Profesional</h2>
                                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                                    {/* Profile text on the left */}
+                                    {/* Texto del perfil a la izquierda */}
                                     <div className="md:w-1/2 text-gray-700 text-base leading-relaxed text-center">
                                         <p className="mb-4">
                                             Estudiante de Administración de Negocios en la Universidad Católica San Pablo, actualmente cursando el sexto ciclo. Me especializo en planificación estratégica, gestión de proyectos y liderazgo en iniciativas con impacto social.
@@ -596,7 +737,7 @@
                                             Mi participación en voluntariados y proyectos organizativos ha fortalecido mis habilidades de comunicación, trabajo en equipo y resolución de problemas. Además, cuento con experiencia en herramientas digitales como Microsoft Office, Canva e inteligencia artificial para optimizar procesos y lograr resultados efectivos.
                                         </p>
                                     </div>
-                                    {/* Image on the right */}
+                                    {/* Imagen a la derecha */}
                                     <div className="md:w-1/2 flex justify-center items-center">
                                         <img
                                             src="https://i.imgur.com/0WaZzd0.jpeg" alt="Foto de Perfil Profesional"
@@ -609,42 +750,42 @@
                         </div>
                     )}
 
-                    {/* Footer */}
+                    {/* Pie de página */}
                     <footer className="bg-blue-600 text-white py-6 px-4 md:px-12 lg:px-24 rounded-t-xl">
                         <nav className="flex justify-center space-x-4 md:space-x-8 text-base font-medium">
-                            {/* Button to open Courses modal (moved from above to here) */}
+                            {/* Botón para abrir el modal de Cursos (movido de arriba a aquí) */}
                             <button onClick={toggleCoursesModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Cursos
                             </button>
-                            {/* Button to open Certificates modal */}
+                            {/* Botón para abrir el modal de Certificados */}
                             <button onClick={toggleCertificadosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Certificados
                             </button>
-                            {/* Button to open Volunteering modal */}
+                            {/* Botón para abrir el modal de Voluntariado */}
                             <button onClick={toggleVoluntariadosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Voluntariados
                             </button>
-                            {/* Button to open Hobbies modal */}
+                            {/* Botón para abrir el modal de Hobbies */}
                             <button onClick={toggleHobbiesModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Hobbies
                             </button>
-                            {/* Button to open Profesores modal */}
+                            {/* Botón para abrir el modal de Profesores */}
                             <button onClick={toggleProfesoresModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Profesores
                             </button>
-                            {/* Button to open Compañeros modal (LinkedIn focus) */}
+                            {/* Botón para abrir el modal de Compañeros (enfoque en LinkedIn) */}
                             <button onClick={toggleCompanerosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer">
                                 Compañeros
                             </button>
                         </nav>
                     </footer>
 
-                    {/* New Hobbies Modal */}
+                    {/* Nuevo Modal de Hobbies */}
                     {showHobbiesModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleHobbiesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">
-                                    &times; {/* Multiplication for a close (X) icon */}
+                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Hobbies:</h2>
                                 <ul className="text-gray-700 text-lg space-y-2 text-left mx-auto max-w-md">
@@ -667,7 +808,7 @@
             );
         };
 
-        // Render the App component into the root div
+        // Renderiza el componente App en el div 'root'
         ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
