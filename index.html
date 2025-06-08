@@ -50,6 +50,7 @@
             const [openCycle, setOpenCycle] = useState(null); // null significa que ningún ciclo está abierto
 
             // Datos para contactos de GitHub (solo enlaces de GitHub)
+            // Se agregaron elementos vacíos para asegurar 5 páginas con 6 elementos por página (6 reales + 24 vacíos = 30 total)
             const githubContactsData = [
                 { name: "Salvador Ramos Mendoza", github: "https://salvaramen.github.io/" },
                 { name: "Camila Carrasco Coaquera", github: "https://camila0807.github.io/ICC/" },
@@ -57,10 +58,12 @@
                 { name: "Anyhely Colca Mamani", github: "https://anyh3ly.github.io/AnyhelyColcaMamani.github.io/" },
                 { name: "Dayron Coaquira Llave", github: "https://day-llave.github.io/dayron_giovani_coaquira_llave/" },
                 { name: "Katherin Velasquez Parque", github: "https://github.com/KatherinVelasquez" },
+                ...Array(24).fill().map((_, i) => ({ name: `Contacto Vacío ${i + 7}`, github: "" }))
             ];
 
             // Datos para compañeros de LinkedIn (solo enlaces de LinkedIn)
-            // Se extendió la lista de compañeros con datos vacíos para alcanzar 10 páginas.
+            // Se extendió la lista de compañeros con datos vacíos para alcanzar 10 páginas (con 6 ítems por página).
+            // 10 elementos reales + 50 vacíos = 60 total
             const linkedinCompanionsData = [
                 { name: "Mharco Paricahua Akutak", linkedin: "https://www.linkedin.com/in/mharco-jacob-ii-paricahua-akutak-2202a4259/" },
                 { name: "Anyhely Colca Mamani", linkedin: "https://www.linkedin.com/in/anyhely-yhadira-colca-mamani-243228342/" },
@@ -72,8 +75,7 @@
                 { name: "Salvador Ramos Mendoza", linkedin: "https://www.linkedin.com/in/salvador-jes%C3%BAs-ramos-mendoza-a09626326/" },
                 { name: "Camila Chávez Paredes", linkedin: "https://www.linkedin.com/in/camila-ch%C3%A1vez-paredes-441577234//" },
                 { name: "Duany Gonzales Hilares", linkedin: "https://www.linkedin.com/in/duany-alexia-gonzales-hilares-096156368/overlay/contact-info/" },
-                // Añadir elementos vacíos para asegurar al menos 10 páginas con 5 elementos por página (50 elementos en total)
-                ...Array(40).fill().map((_, i) => ({ name: `Compañero Vacío ${i + 11}`, linkedin: "" }))
+                ...Array(50).fill().map((_, i) => ({ name: `Compañero Vacío ${i + 11}`, linkedin: "" }))
             ];
 
             // Datos estructurados para Cursos por Ciclo
@@ -168,6 +170,7 @@
             ];
 
             // Datos para Profesores
+            // Se agregaron elementos vacíos para asegurar 5 páginas con 6 elementos por página (8 reales + 22 vacíos = 30 total)
             const profesoresData = [
                 { name: "Ernesto Cuadros Vargas", linkedin: "https://www.linkedin.com/in/ecuadrosv?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B68hvky8YSgyX4wjCxkmfQg%3D%3D" },
                 { name: "Alonso Quintanilla", linkedin: "https://www.linkedin.com/in/alonso-quintanilla-30b52115/" },
@@ -177,13 +180,12 @@
                 { name: "María Bocchio Linares", linkedin: "https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-bocchio-linares-96846035/" },
                 { name: "Karen Gutiérrez Martínez", linkedin: "https://www.linkedin.com/in/karenguti%C3%A9rrezmart%C3%ADnez/" },
                 { name: "Maria Ojeda Verjel", linkedin: "https://www.linkedin.com/in/maria-del-rosario-ojeda-verjel/" },
-                // Añadir 17 elementos vacíos para asegurar 5 páginas con 5 elementos por página (8 reales + 17 vacíos = 25 total)
-                ...Array(17).fill().map((_, i) => ({ name: `Profesor Vacío ${i + 9}`, linkedin: "" }))
+                ...Array(22).fill().map((_, i) => ({ name: `Profesor Vacío ${i + 9}`, linkedin: "" }))
             ];
 
             // --- Nuevos estados para la paginación de compañeros ---
             const [currentPageCompaneros, setCurrentPageCompaneros] = useState(1);
-            const itemsPerPageCompaneros = 5; // Mostrar 5 compañeros por página
+            const itemsPerPageCompaneros = 6; // Mostrar 6 compañeros por página
 
             // Calcular el índice del último y primer compañero en la página actual
             const indexOfLastCompanion = currentPageCompaneros * itemsPerPageCompaneros;
@@ -213,7 +215,7 @@
 
             // --- Nuevos estados para la paginación de profesores ---
             const [currentPageProfesores, setCurrentPageProfesores] = useState(1);
-            const itemsPerPageProfesores = 5; // Mostrar 5 profesores por página
+            const itemsPerPageProfesores = 6; // Mostrar 6 profesores por página
 
             // Calcular el índice del último y primer profesor en la página actual
             const indexOfLastProfesor = currentPageProfesores * itemsPerPageProfesores;
@@ -241,10 +243,44 @@
             };
             // --- Fin de estados y funciones de paginación de profesores ---
 
+            // --- Nuevos estados para la paginación de contactos ---
+            const [currentPageContacts, setCurrentPageContacts] = useState(1);
+            const itemsPerPageContacts = 6; // Mostrar 6 contactos por página
+
+            // Calcular el índice del último y primer contacto en la página actual
+            const indexOfLastContact = currentPageContacts * itemsPerPageContacts;
+            const indexOfFirstContact = indexOfLastContact - itemsPerPageContacts;
+            const currentContacts = githubContactsData.slice(indexOfFirstContact, indexOfLastContact);
+
+            // Calcular el número total de páginas de contactos
+            const totalPagesContacts = Math.ceil(githubContactsData.length / itemsPerPageContacts);
+
+            // Función para cambiar de página (Contactos)
+            const paginateContacts = (pageNumber) => setCurrentPageContacts(pageNumber);
+
+            // Función para ir a la página anterior (Contactos)
+            const goToPrevPageContacts = () => {
+                if (currentPageContacts > 1) {
+                    setCurrentPageContacts(currentPageContacts - 1);
+                }
+            };
+
+            // Función para ir a la página siguiente (Contactos)
+            const goToNextPageContacts = () => {
+                if (currentPageContacts < totalPagesContacts) {
+                    setCurrentPageContacts(currentPageContacts + 1);
+                }
+            };
+            // --- Fin de estados y funciones de paginación de contactos ---
+
 
             // Función para alternar la visibilidad del modal de contactos (GitHub)
             const toggleContactsModal = () => {
                 setShowContactsModal(!showContactsModal);
+                // Resetear la página a 1 cuando el modal se cierra
+                if (showContactsModal) {
+                    setCurrentPageContacts(1);
+                }
             };
 
             // Función para alternar la visibilidad del modal de compañeros (LinkedIn)
@@ -267,7 +303,7 @@
 
             // Función para alternar la visibilidad de un ciclo de curso individual
             const toggleCycle = (cycleName) => {
-                setOpenCycle(openCycle === cycleData.cycle ? null : cycleData.cycle);
+                setOpenCycle(openCycle === cycleName ? null : cycleName);
             };
 
             // Función para alternar la visibilidad del modal de datos generales
@@ -484,16 +520,55 @@
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contactos:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                                    {githubContactsData.map((contact, index) => ( // Usando githubContactsData
+                                    {currentContacts.map((contact, index) => ( // Usando currentContacts para la paginación
                                         <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            {/* Si la URL de GitHub está vacía, mostrar una imagen de placeholder */}
+                                            <img src={contact.github ? `https://placehold.co/80x80/d1d5db/3b82f6?text=Foto` : `https://placehold.co/80x80/d1d5db/3b82f6?text=Vacío`} alt={`Foto de perfil de ${contact.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
                                             <h3 className="text-lg font-semibold mb-1">{contact.name}</h3>
-                                            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                                                <i className="fab fa-github text-xl mr-2"></i> Página de GitHub
-                                            </a>
+                                            {/* Si la URL de GitHub está vacía, no mostrar el enlace */}
+                                            {contact.github && (
+                                                <a href={contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                                    <i className="fab fa-github text-xl mr-2"></i> Página de GitHub
+                                                </a>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
+                                {/* Controles de paginación de contactos */}
+                                {totalPagesContacts > 1 && (
+                                    <div className="flex justify-center items-center space-x-4 mt-8">
+                                        <button
+                                            onClick={goToPrevPageContacts}
+                                            disabled={currentPageContacts === 1}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageContacts === 1 ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Anterior
+                                        </button>
+                                        {/* Botones de números de página para contactos */}
+                                        {[...Array(totalPagesContacts)].map((_, index) => (
+                                            <button
+                                                key={index + 1}
+                                                onClick={() => paginateContacts(index + 1)}
+                                                className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                    currentPageContacts === index + 1 ? 'bg-blue-800 text-white shadow-lg' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                                                }`}
+                                            >
+                                                {index + 1}
+                                            </button>
+                                        ))}
+                                        <button
+                                            onClick={goToNextPageContacts}
+                                            disabled={currentPageContacts === totalPagesContacts}
+                                            className={`py-2 px-4 rounded-full font-bold transition duration-300 ease-in-out ${
+                                                currentPageContacts === totalPagesContacts ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                                            }`}
+                                        >
+                                            Siguiente
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}
@@ -509,7 +584,8 @@
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
                                     {currentCompanions.map((companion, index) => ( // Usando currentCompanions para la paginación
                                         <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${companion.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            {/* Si la URL de LinkedIn está vacía, mostrar una imagen de placeholder */}
+                                            <img src={companion.linkedin ? `https://placehold.co/80x80/d1d5db/3b82f6?text=Foto` : `https://placehold.co/80x80/d1d5db/3b82f6?text=Vacío`} alt={`Foto de perfil de ${companion.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
                                             <h3 className="text-lg font-semibold mb-1">{companion.name}</h3>
                                             {/* Si la URL de LinkedIn está vacía, no mostrar el enlace */}
                                             {companion.linkedin && (
@@ -580,9 +656,13 @@
                                             </button>
                                             {openCycle === cycleData.cycle && (
                                                 <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
-                                                    {cycleData.courses.map((course, courseIndex) => (
-                                                        <li key={courseIndex}>{course}</li>
-                                                    ))}
+                                                    {cycleData.courses.length > 0 ? (
+                                                        cycleData.courses.map((course, courseIndex) => (
+                                                            <li key={courseIndex}>{course}</li>
+                                                        ))
+                                                    ) : (
+                                                        <li className="italic text-gray-500">Cursos por añadir...</li>
+                                                    )}
                                                 </ul>
                                             )}
                                         </div>
@@ -669,7 +749,8 @@
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
                                     {currentProfesores.map((profesor, index) => ( // Usando currentProfesores para la paginación
                                         <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-md flex flex-col items-center">
-                                            <img src="https://placehold.co/80x80/d1d5db/3b82f6?text=Foto" alt={`Foto de perfil de ${profesor.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
+                                            {/* Si la URL de LinkedIn está vacía, mostrar una imagen de placeholder */}
+                                            <img src={profesor.linkedin ? `https://placehold.co/80x80/d1d5db/3b82f6?text=Foto` : `https://placehold.co/80x80/d1d5db/3b82f6?text=Vacío`} alt={`Foto de perfil de ${profesor.name}`} className="w-20 h-20 rounded-full mb-3 object-cover" />
                                             <h3 className="text-lg font-semibold mb-1">{profesor.name}</h3>
                                             {/* Si la URL de LinkedIn está vacía, no mostrar el enlace */}
                                             {profesor.linkedin && (
