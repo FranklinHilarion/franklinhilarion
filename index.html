@@ -34,7 +34,7 @@
             const [showCoursesModal, setShowCoursesModal] = useState(false);
             const [showDatosModal, setShowDatosModal] = useState(false);
             const [showCertificadosModal, setShowCertificadosModal] = useState(false);
-            const [showVoluntariadosModal, setShowVoluntariadosModal] = useState(false);
+            const [showParticipacionesModal, setShowParticipacionesModal] = useState(false);
             const [showPerfilModal, setShowPerfilModal] = useState(false);
             const [showProfesoresModal, setShowProfesoresModal] = useState(false);
             const [showHobbiesModal, setShowHobbiesModal] = useState(false);
@@ -290,13 +290,13 @@
                 setShowDatosModal(!showDatosModal);
             };
 
-            // Funciones individuales para los modales de Certificados y Voluntariados
+            // Funciones individuales para los modales de Certificados y Participaciones
             const toggleCertificadosModal = () => {
                 setShowCertificadosModal(!showCertificadosModal);
             };
 
-            const toggleVoluntariadosModal = () => {
-                setShowVoluntariadosModal(!showVoluntariadosModal);
+            const toggleParticipacionesModal = () => {
+                setShowParticipacionesModal(!showParticipacionesModal);
             };
 
             // Función para el modal de Profesores
@@ -716,15 +716,15 @@
                         </div>
                     )}
 
-                    {/* Modal de Voluntariado */}
-                    {showVoluntariadosModal && (
+                    {/* Modal de Participaciones */}
+                    {showParticipacionesModal && (
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
-                                <button onClick={toggleVoluntariadosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
+                                <button onClick={toggleParticipacionesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
                                     &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
-                                {/* Título para Capacitaciones / Voluntariados: en negrita y azul */}
-                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Voluntariados:</h2>
+                                {/* Título para Participaciones: en negrita y azul */}
+                                <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Participaciones:</h2>
                                 <div className="text-gray-700 text-lg space-y-2">
                                     <p>
                                         <strong>1:</strong> <a href="https://drive.google.com/file/d/10ifZVRr8RupJ90LwaXgtObGuP9L6oKCC/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300">Voluntariado en "Fundación Romero" | Arequipa</a>
@@ -845,9 +845,9 @@
                             <button onClick={toggleCertificadosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300">
                                 Certificados
                             </button>
-                            {/* Botón para abrir el modal de Voluntariado */}
-                            <button onClick={toggleVoluntariadosModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300">
-                                Voluntariados
+                            {/* Botón para abrir el modal de Participaciones */}
+                            <button onClick={toggleParticipacionesModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                Participaciones
                             </button>
                             {/* Botón para abrir el modal de Hobbies */}
                             <button onClick={toggleHobbiesModal} className="text-white hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg bg-transparent border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300">
