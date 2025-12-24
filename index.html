@@ -473,26 +473,51 @@
                         </section>
 
                         {/* Sección de Contacto General */}
-                        <section className="mb-16 bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
-                            <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contacto:</h2>
-                            <p className="text-center text-gray-700 mb-6">Estoy disponible para cualquier consulta o colaboración:</p>
-                            <form className="space-y-6">
-                                <div>
-                                    <label htmlFor="nombre" className="sr-only">Nombre completo</label>
-                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out" required />
+                        <section class="contact-section" id="contacto">
+                            <div class="container">
+                                <div class="section-title">
+                                    <h1>Contáctame</h1>
                                 </div>
-                                <div>
-                                    <label htmlFor="email" className="sr-only">Correo electrónico</label>
-                                    <input type="email" id="email" name="email" placeholder="Correo electrónico" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out" required />
+                                
+                                <p class="section-subtitle">
+                                    ¿Interesado en colaborar o conocer más sobre mi trabajo? Escríbeme, estoy siempre abierto a nuevas conexiones.
+                                </p>
+                                
+                                <div class="contact-grid">
+                                    <div class="contact-info">
+                                        <h2>Información de contacto</h2>
+                                        
+                                        <div class="contact-item">
+                                            <div class="contact-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                            </div>
+                                            <div class="contact-details">
+                                                <div class="contact-label">Correo electrónico</div>
+                                                <div class="contact-value"><a href="mailto:tu.email@ucsp.edu.pe">tu.email@ucsp.edu.pe</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-form">
+                                        <h2>Envíame un mensaje</h2>
+                                        <form onsubmit="event.preventDefault();">
+                                            <div class="form-group">
+                                                <label for="nombre">Nombre</label>
+                                                <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Correo electrónico</label>
+                                                <input type="email" id="email" placeholder="tu@email.com" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="mensaje">Mensaje</label>
+                                                <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                            </div>
+                                            <button type="submit" class="submit-btn">Enviar mensaje</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label htmlFor="mensaje" className="sr-only">Escribe tu mensaje...</label>
-                                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje..." className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out" required></textarea>
-                                </div>
-                                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-                                    Enviar
-                                </button>
-                            </form>
+                            </div>
                         </section>
                     </main>
 
@@ -903,6 +928,7 @@
     </script>
 </body>
 </html>
+
 
 
 
