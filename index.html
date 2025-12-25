@@ -12,6 +12,22 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        /* Personalización extra para la animación de rebote si Tailwind no la carga correctamente */
+        @keyframes bounce-custom {
+            0%, 100% {
+                transform: translateY(-5%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+        .animate-bounce-custom {
+            animation: bounce-custom 1s infinite;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>
@@ -572,7 +588,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleContactsModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto">Contactos:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
@@ -635,7 +651,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleCompanerosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Compañeros:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
@@ -698,7 +714,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleCoursesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times;
+                                    ×
                                 </button>
                                 {/* Se cambió el color del título de Cursos de rojo a azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Cursos:</h2>
@@ -735,7 +751,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleDatosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 {/* Título de Datos Generales: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Datos Generales:</h2>
@@ -759,7 +775,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleCertificadosModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 {/* Título para Certificados: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Certificados:</h2>
@@ -786,7 +802,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleParticipacionesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 {/* Título para Participaciones: en negrita y azul */}
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Participaciones:</h2>
@@ -822,7 +838,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
                                 <button onClick={toggleProfesoresModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Profesores:</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
@@ -885,7 +901,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-5xl w-full relative my-8">
                                 <button onClick={togglePerfilModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Perfil Profesional</h2>
                                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -946,7 +962,7 @@
                         <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
                             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-full relative my-8">
                                 <button onClick={toggleHobbiesModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400">
-                                    &times; {/* Símbolo de multiplicación para un icono de cierre (X) */}
+                                    × {/* Símbolo de multiplicación para un icono de cierre (X) */}
                                 </button>
                                 <h2 className="text-3xl font-bold text-center mb-10 section-title mx-auto text-blue-600">Hobbies:</h2>
                                 <ul className="text-gray-700 text-lg space-y-2 text-left mx-auto max-w-md">
@@ -965,6 +981,19 @@
                             </div>
                         </div>
                     )}
+                    
+                    {/* --- BOTÓN FLOTANTE DE WHATSAPP --- */}
+                    <a
+                        href="https://wa.me/51974443487"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 flex items-center justify-center animate-bounce"
+                        title="¡Escríbeme al WhatsApp!"
+                    >
+                        <i className="fab fa-whatsapp text-4xl"></i>
+                    </a>
+                    {/* --- FIN BOTÓN FLOTANTE --- */}
+
                 </div>
             );
         };
@@ -974,17 +1003,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
